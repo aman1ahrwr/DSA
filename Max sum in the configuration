@@ -1,0 +1,20 @@
+int max_sum(int A[],int N)
+{
+    int sum=0;
+    int S0=0;
+    for(int i=0; i<N; i++){
+        sum+=A[i];
+        S0+=A[i]*i;
+    }
+    int max = S0;
+    int Si = S0;
+    for(int i=0;i<N-1; i++){
+        int Sip1 = Si + sum - N*A[N-1-i];
+        
+        if(Sip1>max){
+            max=Sip1;
+        }
+        Si = Sip1;
+    }
+    return max;
+}
