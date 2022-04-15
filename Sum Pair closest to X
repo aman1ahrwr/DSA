@@ -1,0 +1,20 @@
+ vector<int> sumClosest(vector<int>arr, int x)
+    {
+        int one,two,i=0,j=arr.size()-1,diff=INT_MAX;
+        while(j>i){
+            if(arr[i]+arr[j]==x){
+                return {arr[i],arr[j]};
+            }
+            if(abs(arr[i]+arr[j]-x)<diff){
+                diff = abs(arr[i]+arr[j]-x);
+                one=i,two=j;
+            }
+            
+            if(arr[i]+arr[j]>x){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return {arr[one],arr[two]};
+    }
