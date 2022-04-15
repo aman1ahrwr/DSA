@@ -1,0 +1,25 @@
+struct Node* reverseList(struct Node *head)
+    {
+        /* (Iterative approach)
+        Node* prev = NULL;
+        Node* curr = head;
+        while(curr!=NULL){
+            Node* temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+        */
+        
+        // (Recursive approach)
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        Node* newHead = reverseList(head->next);
+        Node* headNext = head->next;
+        headNext->next = head;
+        head->next = NULL;
+        return newHead;
+    }
+    
