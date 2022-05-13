@@ -1,4 +1,5 @@
- long long trappingWater(int arr[], int n){
+/* Non optimised solution
+long long trappingWater(int arr[], int n){
         int left[n];
         int right[n];
         left[0] = arr[0];
@@ -14,4 +15,32 @@
             ans += (min(left[k],right[k]) - arr[k]);
         }
         return ans;
+    }
+*/
+
+// Optimised Two pointer approach
+int trap(vector<int>& height) {
+        int res=0;
+        int left = 0;
+        int right = height.size()-1;
+        int maxLeft = 0, maxRight = 0;
+        
+        while(left<right){
+            
+            if(height[left]<=height[right]){
+            
+                if(height[left]>maxLeft) maxLeft = height[left];
+                else res += maxLeft-height[left];
+                
+               left++;
+            
+            }else{
+                
+                if(height[right]>maxRight) maxRight = height[right];
+                else res += maxRight-height[right];
+                
+                right--;
+            }
+        }
+        return res;
     }
