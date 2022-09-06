@@ -1,6 +1,6 @@
 char* reverse(char *S, int len)
 {
-    stack<int> st;
+    stack<char> st;
     for(int i=0; i<len; i++){
         st.push(S[i]);
     }
