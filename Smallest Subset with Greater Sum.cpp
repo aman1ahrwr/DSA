@@ -6,12 +6,10 @@ int minSubset(vector<int> &arr,int n){
         
         sort(arr.rbegin(), arr.rend());
         
-        int count=0;
         long long currSum=0;
         for(int i=0; i<n; i++){
             currSum+=arr[i];
             sum-=arr[i];
-            count++;
             if(currSum>sum){
                 return i+1;
             }
