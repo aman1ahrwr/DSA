@@ -1,9 +1,8 @@
-bool containsNearbyDuplicate(vector<int>& nums, int k) {
+ bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_map<int, int> map;
         for(int i=0; i<nums.size(); i++){
-            if(map.find(nums[i])!=map.end()){
-                if(abs(i-map[nums[i]])<=k)
-                    return true;
+            if(map.find(nums[i])!=map.end() && abs(i-map[nums[i]])<=k){
+                return true;
             }
             map[nums[i]]=i;
         }
