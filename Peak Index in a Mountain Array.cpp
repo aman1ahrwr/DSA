@@ -1,7 +1,7 @@
 int peakIndexInMountainArray(vector<int>& arr) {
         int h=arr.size()-1;
         int l=0;
-        int ans=-1;
+        
         while(l<h){
             int mid=l+(h-l)/2;
         
