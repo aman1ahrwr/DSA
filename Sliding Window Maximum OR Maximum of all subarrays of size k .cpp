@@ -1,25 +1,17 @@
-vector <int> max_of_subarrays(int *arr, int n, int k)
-    {
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> dq;
         vector<int> ans;
-        deque<int> dq(k);
-        int i;
-        for(i=0; i<k; ++i){
-            while((!dq.empty()) && arr[i]>=arr[dq.back()]){
-                dq.pop_back();
-            }
-            dq.push_back(i);
-        }
-        ans.push_back(arr[dq.front()]);
-        for(i=k; i<n; ++i){
-            if(dq.front()==i-k){
+        for(int i=0; i<nums.size(); i++){
+            if(!dq.empty() && dq.front()==i-k){
                 dq.pop_front();
             }
             
-            while((!dq.empty()) && arr[i]>=arr[dq.back()]){
+            while(!dq.empty() && nums[dq.back()]<nums[i]){
                 dq.pop_back();
             }
+            
             dq.push_back(i);
-            ans.push_back(arr[dq.front()]);
+            if(i>=k-1) ans.push_back(nums[dq.front()]);
         }
         return ans;
     }
