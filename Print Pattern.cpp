@@ -1,3 +1,20 @@
+// Approach without Flag (Better)
+void solve(vector<int> &ans, int N){
+        if(N<=0){
+            ans.push_back(N);
+            return;
+        }
+        ans.push_back(N);
+        solve(ans, N-5);
+        ans.push_back(N);
+    }
+
+    vector<int> pattern(int N){
+        vector<int> ans;
+        solve(ans, N);
+        return ans;
+    }
+
 // Approach with flag
 void solve(vector<int> &ans, int &flag, int N, int n){
         if(flag==1 && N==n){
