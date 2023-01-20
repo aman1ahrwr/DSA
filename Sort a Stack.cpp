@@ -1,4 +1,33 @@
-// { Driver Code Starts
+// Best Solution
+void sortedInsert(stack<int> &stack, int t){
+    if(stack.empty() || (!stack.empty() && stack.top()<=t)){
+        stack.push(t);
+        return;
+    }
+    
+    int num = stack.top();
+    stack.pop();
+    
+    sortedInsert(stack, t);
+    stack.push(num);
+}
+
+void sortStack(stack<int> &stack)
+{
+	if(stack.empty()){
+        return;
+    }
+    
+    int t = stack.top();
+    stack.pop();
+    
+    sortStack(stack);
+    
+    sortedInsert(stack, t);
+}
+
+
+// less Readable Code
 #include<bits/stdc++.h>
 using namespace std;
 
