@@ -50,3 +50,33 @@ int main()
         cout<<"not balanced"<<endl;
    }
 }  // } Driver Code Ends
+
+
+// Another Solution same Approach different Code
+bool isMatch(char o, char c){
+    return ((o=='[' && c==']') || 
+                 (o=='(' && c==')') || 
+                 (o=='{' && c=='}'));
+}
+
+bool isValidParenthesis(string s)
+{
+    stack<char> st;
+    
+    for(int i=0; i<s.size(); i++){
+        if(s[i]=='(' || s[i]=='[' || s[i]=='{'){
+            st.push(s[i]);
+        }else if(st.empty()){
+            return false;
+        }else{
+            if(isMatch(st.top(), s[i])){
+                st.pop();
+            }else{
+                return false;
+            }
+        }
+    }
+    
+    if(st.empty()) return true;
+    return false;
+}
