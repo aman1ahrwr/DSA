@@ -1,3 +1,30 @@
+// Optimal and Easy to Understand Approach
+string FirstNonRepeating(string A){
+		    queue<int> q;
+		    vector<int> v(26, 0);
+		    
+		    for(int i=0; i<A.size(); i++){
+		        v[A[i]-'a']++;
+		        q.push(A[i]);
+		        
+		        while(!q.empty()){
+		            if(v[q.front()-'a']>1){
+		                q.pop();
+		            }else{
+		                A[i]=q.front();
+		                break;
+		            }
+		        }
+		        if(q.empty()){
+		            A[i]='#';
+		        }
+		    }
+		    
+		    return A;
+		}
+
+
+// Earlier Approach
 string FirstNonRepeating(string A){
             vector<int> visited(26,0);
             string ans = "";
