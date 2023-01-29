@@ -1,40 +1,38 @@
-bool isMax(struct Node* root){
-        if(root->left==NULL || root->right==NULL){
-            return true;
-        }else if(root->right==NULL){
-            return isMax(root->left);
-        }else{
-            return root->data>=root->left->data && root->data>=root->right->data && isMax(root->left) && isMax(root->right);
-        }
-    }
-    
-    bool isCBT(struct Node* root, int i, int n){
+bool isCBT(struct Node* root, int n, int i){
         if(root==NULL){
             return true;
-        }
+        }    
         
         if(i>=n){
             return false;
-        }else{
-            bool left = isCBT(root->left, 2*i+1, n);
-            bool right = isCBT(root->right, 2*i+2, n);
-            return left && right;
         }
+        
+        return isCBT(root->left,n, 2*i+1) && isCBT(root->right, n, 2*i+2);
     }
     
+    bool isMax(struct Node* root){
+        if(root->left==NULL && root->right==NULL){
+            return true;
+        }else if(root->right==NULL){
+            return root->data>root->left->data;
+        }else{
+            return root->data>=root->left->data && isMax(root->left) 
+            && root->data>=root->right->data && isMax(root->right);
+        }
+    }
+  
     int countNode(struct Node* root){
         if(root==NULL){
             return 0;
         }
-        
-        int ans = 1 + countNode(root->left) + countNode(root->right);
-        return ans;
+        return 1 + countNode(root->left) + countNode(root->right);
     }
   
     bool isHeap(struct Node* tree) {
-        int i = 0;
+        
         int n = countNode(tree);
-        if(isMax(tree) && isCBT(tree, i, n)){
+        int i=0;
+        if(isCBT(tree, n, i) && isMax(tree)){
             return true;
         }
         return false;
