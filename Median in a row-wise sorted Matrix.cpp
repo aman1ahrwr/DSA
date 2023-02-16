@@ -1,3 +1,44 @@
+// Better, Easy to Understand Solution.
+int countSmaller(vector<int>& temp, int t){
+        int low=0;
+        int high=temp.size()-1;
+        while(low<=high){
+            int mid=(high+low)/2;
+            
+            if(temp[mid]<=t){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        
+        return low;
+    }
+
+    int median(vector<vector<int>> &matrix, int R, int C){
+        int low=0;
+        int high=1e9;
+    
+        while(low<=high){
+            int mid=(high+low)>>1;
+            
+            int cnt=0;
+            for(int i=0; i<R; i++){
+                cnt+=countSmaller(matrix[i], mid);
+            }
+            
+            if(cnt<=((R*C)>>1)){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        
+        return low;
+    }
+
+
+// Earlier Solution
 int solve(vector<int>A,int index)
     {   
         int count=0;
