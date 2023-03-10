@@ -20,3 +20,34 @@ vector<int> nextPermutation(int N, vector<int> arr){
         }
         return arr;
     }
+
+
+// Same Approach Different Code
+void nextPermutation(vector<int>& nums) {
+        int ind=-1;
+
+        for(int i=nums.size()-1; i>0; i--){
+            if(nums[i-1]<nums[i]){
+                ind=i-1;
+                break;
+            }
+        }
+
+        if(ind==-1){
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+
+        int swapInd=ind+1;
+        int i=ind+2;
+        while(i<nums.size()){
+            if(nums[i]>nums[ind] && nums[i]<=nums[swapInd]){
+                swapInd=i;
+            }
+            i++;
+        }
+
+        swap(nums[ind], nums[swapInd]);
+
+        reverse(nums.begin()+ind+1, nums.end());
+    }
