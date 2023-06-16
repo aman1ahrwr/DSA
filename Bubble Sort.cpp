@@ -13,3 +13,6 @@ void bubbleSort(int arr[], int n)
         if(swapped==0) break;
     }   
 }
+
+// TC(B) = O(n), TC(W, Avg) = O(n^2)
+// SC=O(1)
