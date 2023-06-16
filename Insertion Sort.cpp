@@ -8,3 +8,6 @@ void insertionSort(int arr[], int n)
             }
         }
     }
+
+// Worst and Best Case TC = O(n^2), Best Case TC = O(n)
+// SC=O(1)
