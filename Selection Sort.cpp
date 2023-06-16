@@ -10,3 +10,6 @@ void selectionSort(int arr[], int n)
            swap(arr[i], arr[miniInd]);
        }
     }
+
+// TC=O(n^2)
+// SC=O(1)
