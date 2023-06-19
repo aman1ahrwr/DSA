@@ -45,3 +45,6 @@ void quickSort(int arr[], int low, int high)
        }
        return pivotInd;
     }
+
+// TC = O(N*logN)
+// SC = O(1)
