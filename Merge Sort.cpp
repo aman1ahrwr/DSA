@@ -60,3 +60,6 @@ void merge(int arr[], int l, int m, int r)
             merge(arr, l, m, r);
         }
     }
+
+// TC = O(N*logN)
+// SC = O(N)
