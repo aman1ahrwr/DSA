@@ -5,3 +5,6 @@ int search(int A[], int N){
 	    }
 	    return XOR;
 	}
+
+// TC=O(N)
+// SC=O(1)
