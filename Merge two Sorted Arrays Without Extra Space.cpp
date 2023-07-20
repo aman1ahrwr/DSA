@@ -12,6 +12,44 @@ void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long lon
 	sort(b.begin(), b.end());
 	
 }
-
 // TC=O(min(N,M)) + O(NlogN) + O(MlogM)
+// SC=O(1)
+
+// Gap Method - slighlty better
+#include<vector>
+
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long long> &b){
+	int len=a.size()+b.size();
+	int gap=(len/2)+(len%2);
+
+	while(gap>0){
+		int left=0;
+		int right=gap;
+
+		while(right<len){
+			// left in 1st array and right in 2nd array 
+			if(left<a.size() && right>=a.size()){
+				if(a[left]>b[right-a.size()]){
+					swap(a[left], b[right-a.size()]);
+				}
+			}// Both in 2nd array 
+			else if(left>=a.size()){
+				if(b[left-a.size()]>b[right-a.size()]){
+					swap(b[left-a.size()], b[right-a.size()]);
+				}
+			}// Both in 1st array
+			else{
+				if(a[left]>a[right]){
+					swap(a[left], a[right]);
+				}
+			}
+			left++; right++;
+		}
+
+		if(gap==1) break;
+		gap=(gap/2)+(gap%2);
+	}
+}
+
+// TC=O((N+M)*log(N+M))
 // SC=O(1)
