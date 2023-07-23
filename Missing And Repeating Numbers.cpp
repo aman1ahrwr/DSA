@@ -16,3 +16,28 @@ vector<int> findMissingRepeatingNumbers(vector < int > a) {
 }
 // TC=O(N)
 // SC=O(N)
+
+
+// Using Maths Equation
+vector<int> findMissingRepeatingNumbers(vector < int > a) {
+    long long n=a.size();
+    long long sumN=(n*(n+1))/2;
+    long long sum=0;
+    long long sumNSq=(n*(n+1)*((2*n)+1))/6;
+    long long sumSq=0;
+    
+    for(int i=0; i<n; i++){
+        sum=sum+(long long)a[i];
+        sumSq=sumSq+((long long)a[i]*(long long)a[i]);
+    }
+
+    long long xMy=sum-sumN;
+    long long xPy=(sumSq-sumNSq)/xMy;
+    
+    long long repeat=(xMy+xPy)/2;
+    long long miss=xPy-repeat;
+
+    return {(int)repeat, (int)miss};
+}
+// TC=O(N)
+// SC=O(1)
