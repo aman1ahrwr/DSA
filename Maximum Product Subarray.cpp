@@ -1,18 +1,24 @@
-// Function to find maximum product subarray
-	long long maxProduct(vector<int> arr, int n) {
-	    long long ans=arr[0];
-	    long long maxi=arr[0];
-	    long long mini=arr[0];
-	    
-	    for(int i=1; i<n; i++){
-	        if(arr[i]<0){
-	            swap(maxi, mini);
-	        }
-	        
-	        maxi=max((long long)arr[i], maxi*arr[i]);
-	        mini=min((long long)arr[i], mini*arr[i]);
-	        ans=max(ans, maxi);
-	    }
-	    
-	    return ans;
-	}
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        long long prefix=1;
+        long long suffix=1;
+        long long maxi=INT_MIN;
+        int n=nums.size();
+        
+        for(int i=0; i<n; i++){
+            if(prefix==0) prefix=1;
+            if(suffix==0) suffix=1;
+
+            prefix=prefix*nums[i];
+            suffix=suffix*nums[n-i-1];
+
+            maxi=max(maxi, max(prefix, suffix));
+        }
+
+        return (int)maxi;
+    }
+};
+
+// TC=O(N)
+// SC=O(1)
