@@ -51,5 +51,41 @@ void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long lon
 	}
 }
 
+// More readable code
+#include<vector>
+
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long long> &b){
+	int n=a.size();
+	int m=b.size();
+	
+	int gap=((n+m)/2)+((n+m)%2);
+	
+	while(1){
+		int i=0;
+		int j=gap;
+		
+		while(j<(n+m)){
+			if(i<n && j>=n){
+				if(a[i]>b[j-n]){
+					swap(a[i], b[j-n]);
+				}
+			}else if(i>=n){
+				if(b[i-n]>b[j-n]){
+					swap(b[i-n], b[j-n]);
+				}
+			}else {
+				if(a[i]>a[j]){
+					swap(a[i], a[j]);
+				}
+			}
+			i++; j++;
+		}
+		
+		if(gap==1) break;
+		gap=(gap/2)+(gap%2);
+	}
+	
+}
+
 // TC=O((N+M)*log(N+M))
 // SC=O(1)
