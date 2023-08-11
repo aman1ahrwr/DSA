@@ -39,5 +39,5 @@ int aggressiveCows(vector<int> &stalls, int k)
     return ans;
 }
 
-// TC=O(N*log(maxEle-minEle))
+// TC=O(NlogN)+O(N*log(maxEle-minEle))
 // SC=O(1)
