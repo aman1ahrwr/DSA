@@ -1,3 +1,42 @@
+// Best Solution
+#include<bits/stdc++.h>
+int countGasStations(vector<int> arr, long double mid){
+	int ans=0;
+	for(int i=1; i<arr.size(); i++){
+		int cnt=(arr[i]-arr[i-1])/mid;
+		if(((arr[i]-arr[i-1])/mid)==cnt*mid){
+			cnt--;
+		}
+		ans+=cnt;
+	}
+
+	return ans;
+}
+
+long double minimiseMaxDistance(vector<int> &arr, int k){
+	long double low=0;
+	long double high=0;
+	int n=arr.size();
+	for(int i=0; i<n; i++){
+		high=max(high, (long double)(arr[i+1]-arr[i]));
+	}
+	
+	
+	while(high-low>1e-6){
+		long double mid=(high+low)/(2.0);
+		int cnt=countGasStations(arr, mid);
+		
+		if(cnt>k){
+			low=mid;
+		} else{
+			high=mid;
+		}
+	}	
+	return high;
+}
+// TC=O(log(maxDiff)*N)
+// SC=0(1)
+
 // Better Solution
 #include<bits/stdc++.h>
 long double minimiseMaxDistance(vector<int> &arr, int k){
