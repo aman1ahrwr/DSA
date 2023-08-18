@@ -18,3 +18,23 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
         }
         return false;
     }
+// TC=O(log(N*M))
+// SC=O(1)
+
+bool searchMatrix(vector<vector<int>>& mat, int target) {
+    int i=0;
+    int j=mat[0].size()-1;
+    while(i<mat.size() && j>=0){
+        if(mat[i][j]==target){
+            return true;
+        }else if(mat[i][j]<target){
+            i++;
+        }else{
+            j--;
+        }
+    }
+
+    return false;
+}
+// TC=O(N+M)
+// SC=O(1)
